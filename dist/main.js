@@ -1,98 +1,110 @@
 "use strict";
 (() => {
-    let child = 'Gael';
-    console.log({ child });
-    child = {};
-    child.name = 'Gael';
-    child.age = 2;
-    child.parents = {
-        mother: 'Emma',
-        father: 'Daniel',
+    const fullName = (firstName, lastName, upperCase = false) => {
+        if (upperCase) {
+            return `${firstName} ${lastName || ''}`.toUpperCase().trim();
+        }
+        else {
+            return `${firstName} ${lastName || ''}`.trim();
+        }
     };
-    console.log(child);
+    const name = fullName('Gael', 'Pompa', true);
+    console.log({ name });
 })();
 (() => {
-    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    console.log({ numbers });
-    const technologies = [
-        'TypeScript',
-        'MongoDB',
-        'Express.js',
-        'Node.js',
-        'React',
-    ];
-    console.log({ technologies });
-    technologies.forEach((tech, i) => console.log(`[${i}] ${tech}`));
-})();
-(() => {
-    let isGael = true;
-    const gael = isGael ? 'Gael' : false;
-    console.log(gael);
-    console.log({ isGael });
-})();
-(() => {
-    let AudioLevel;
-    (function (AudioLevel) {
-        AudioLevel[AudioLevel["min"] = 1] = "min";
-        AudioLevel[AudioLevel["medium"] = 5] = "medium";
-        AudioLevel[AudioLevel["max"] = 10] = "max";
-    })(AudioLevel || (AudioLevel = {}));
-    let currentAudioLevel = AudioLevel.medium;
-    console.log(AudioLevel);
-    console.log(`Nivel actual de audio: ${currentAudioLevel}`);
-})();
-(() => {
-    const throwError = (message) => {
-        throw new Error(message);
+    const fullName = (firstName, lastName) => {
+        return `${firstName} ${lastName || ''}`.trim();
     };
-    try {
-        throwError('¡Ha ocurrido un error!');
-    }
-    catch (error) {
-        console.error(error);
-    }
+    const name = fullName('Gael');
+    console.log({ name });
 })();
 (() => {
-    let nothing = undefined;
-    console.log(nothing);
-    let nullValue = null;
-    console.log(nullValue);
-})();
-(() => {
-    const accountBalance = 8000;
-    const paymentAmount = 50;
-    const hasCreditCard = true;
-    console.log({ accountBalance });
-    console.log({ paymentAmount });
-    console.log({ hasCreditCard });
-    if (accountBalance >= paymentAmount && hasCreditCard) {
-        console.log('Puedes pagar con tu saldo o con tu tarjeta de crédito');
-    }
-    else if (accountBalance >= paymentAmount) {
-        console.log('Puedes pagar con tu saldo');
-    }
-    else if (hasCreditCard) {
-        console.log('Puedes pagar con tu tarjeta de crédito');
-    }
-    else {
-        console.log('No tienes saldo suficiente');
-    }
-})();
-(() => {
-    const typeScript = 'TypeScript';
-    const javaScript = 'JavaSCript';
-    const message = `${typeScript} es un lenguaje de programación fuertemente tipado que se basa en ${javaScript}`;
-    console.log(typeScript.toUpperCase());
-    console.log(message);
-})();
-(() => {
-    const person = ['Gael', 2, true];
-    console.log(person);
-})();
-(() => {
-    const message = (text) => {
-        console.log(`Hola! ${text}`);
+    const maxOfThreeNumbers = (a, b, c) => {
+        return Math.max(a, b, c);
     };
-    message('TypesCript es genial!');
+    const max = maxOfThreeNumbers(49, 42, 2);
+    console.log({ max });
+    const calculateArea = {
+        square: (side) => side * side,
+        rectangle: (length, width) => length * width,
+        circle: (radius) => Math.PI * radius * radius,
+        triangle: (base, height) => (base * height) / 2,
+    };
+    const areaSquare = calculateArea.square(5);
+    console.log({ areaSquare });
+    const areaRectangle = calculateArea.rectangle(8, 4);
+    console.log({ areaRectangle });
+    const areaCircle = calculateArea.circle(3);
+    console.log({ areaCircle });
+    const areaTriangle = calculateArea.triangle(4, 5);
+    console.log({ areaTriangle });
+    const greet = (firstName, lastName, age) => {
+        const fullName = `${firstName} ${lastName}`;
+        const message = `Hola, soy ${fullName}. Tengo ${age} años.`;
+        return message;
+    };
+    const greeting = greet('Gael', 'Pompa', 2);
+    console.log(greeting);
+    const random = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
+    const generateLotteryCombination = (min, max, amount) => {
+        const combination = new Set();
+        while (combination.size < amount) {
+            const randomNumber = random(min, max);
+            combination.add(randomNumber);
+        }
+        return Array.from(combination).sort((a, b) => a - b);
+    };
+    const generateComplementaryNumber = (min, max, amount) => {
+        const numbers = new Set();
+        while (numbers.size < amount) {
+            numbers.add(random(min, max));
+        }
+        return Array.from(numbers).sort((a, b) => a - b);
+    };
+    const primitiveCombination = generateLotteryCombination(1, 49, 6);
+    const complementaryNumber = generateComplementaryNumber(0, 9, 1);
+    const euromillionsCombination = generateLotteryCombination(1, 50, 5);
+    const euromillionsStars = generateComplementaryNumber(1, 12, 2);
+    const bonolotoCombination = generateLotteryCombination(1, 49, 6);
+    console.log('%cLotería Primitiva', 'color:#1e40af; text-transform: uppercase; font-weight: bold');
+    console.log('Combinación:', primitiveCombination);
+    console.log('Número complementario:', complementaryNumber);
+    console.log('%cEuromillones', 'color:#1e40af; text-transform: uppercase; font-weight: bold');
+    console.log('Combinación:', euromillionsCombination);
+    console.log('Estrellas:', euromillionsStars);
+    console.log('%cBonoloto', 'color:#1e40af; text-transform: uppercase; font-weight: bold');
+    console.log('Combinación:', bonolotoCombination);
+})();
+(() => {
+    const fullName = (firstName, ...rest) => {
+        return `${firstName} ${rest.join(' ')}`;
+    };
+    const name = fullName('Gael', 'Pompa', 'Ciambrino');
+    console.log({ name });
+})();
+(() => {
+    const addNumbers = (a, b) => a + b;
+    const greet = (name) => `Hola ${name}`;
+    const myBelovedSon = () => 'Gael Pompa Ciambrino';
+    let myFunction;
+    myFunction = addNumbers;
+    console.log({ myFunction });
+    console.log(myFunction(1, 1));
+    myFunction = greet;
+    console.log({ myFunction });
+    console.log(myFunction('Gael'));
+    myFunction = myBelovedSon;
+    console.log({ myFunction });
+    console.log(myFunction());
+})();
+(() => {
+    const hero = 'Aquiles';
+    const info = 'Hijo del militar Peleo y de la ninfa del mar Tetis. Aquiles, el guerrero más poderoso de La Ilíada, está al mando de los mirmidones, soldados de su patria, Ftía (Grecia)';
+    const getName = () => hero;
+    const getInfo = () => info;
+    const heroName = getName();
+    const heroInfo = getInfo();
+    console.log({ heroName });
+    console.log(heroInfo);
 })();
 //# sourceMappingURL=main.js.map
