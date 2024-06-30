@@ -1,157 +1,69 @@
 "use strict";
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 (() => {
-    const razvan = {
-        name: 'Razvan',
-        lastName: 'Ilies',
-        age: 38,
-        profession: 'Desarrollador MEVN Stack',
-        technologies: ['TypeScript', 'MongoDB', 'Express.js', 'Vue.js', 'Node.js'],
-        getName() {
-            return this.name;
-        },
-        getLastName() {
-            return this.lastName;
-        },
-        getAge() {
-            return this.age;
-        },
-        getProfession() {
-            return this.profession;
-        },
-        getTechnologies() {
-            return this.technologies;
-        },
+    const technologies = {
+        typescript: 'TypeScript',
+        mongodb: 'MongoDB',
+        express: 'Express',
+        react: 'React',
+        node: 'Node.js',
+        stack: true,
     };
-    const translationMap = {
-        name: 'Nombre',
-        lastName: 'Apellido',
-        age: 'Edad',
-        profession: 'Profesión',
-        technologies: 'Tecnologías',
+    console.log('%cObject Destructuring', 'color:#1e40af; text-transform:uppercase; font-weight: bold');
+    const { mongodb, express, react, node } = technologies;
+    console.log(`${mongodb.charAt(0)}${express.charAt(0)}${react.charAt(0)}${node.charAt(0)} Stack`);
+    console.log(`${mongodb} - ${express} - ${react} - ${node}`);
+    console.log('%cRest Operator', 'color:#1e40af; text-transform:uppercase; font-weight: bold');
+    const printTechnologies = (_a) => {
+        var { typescript } = _a, rest = __rest(_a, ["typescript"]);
+        console.log(`${typescript} - ${rest.mongodb} - ${rest.express} - ${rest.react} - ${rest.node}`);
     };
-    const entries = Object.keys(razvan)
-        .filter(key => typeof razvan[key] !== 'function')
-        .map(key => [key, razvan[key]]);
-    console.log('%cObjetos', 'color:#1e40af; text-transform:uppercase; font-weight: bold');
-    for (const [key, value] of entries) {
-        const translatedKey = translationMap[key] || key;
-        console.log(`${translatedKey}:`, value);
-    }
+    printTechnologies(technologies);
+    console.log('%cArray Destructuring', 'color:#1e40af; text-transform:uppercase; font-weight: bold');
+    const technologiesArray = [
+        'TypeScript',
+        'MongoDB',
+        'Express',
+        'React',
+        'Node.js',
+    ];
+    const [, m, e, r, n] = technologiesArray;
+    console.log(m, e, r, n);
 })();
 (() => {
-    const createPerson = (name, surnames, age, email, profession, technologies) => ({
-        name,
-        surnames,
-        age,
-        email,
-        profession,
-        technologies,
-    });
-    const developer = createPerson('Daniel', 'Pompa Pareja', 49, 'daniel.pompa@me.com', 'Desarrollador MERN Stack', ['TypeScript', 'MongoDB', 'Express.js', 'React', 'Node.js']);
-    const { name, surnames, age, email, profession, technologies } = developer;
-    console.log('%cTypes', 'color:#1e40af; text-transform:uppercase; font-weight: bold');
-    console.log(`Nombre: ${name} ${surnames}`);
-    console.log('Edad:', age);
-    console.log(`Correo electrónico: ${email}`);
-    console.log(`Profesión: ${profession}`);
-    console.log('Tecnologías:', [...technologies]);
-})();
-const children = [
-    {
-        name: 'Gael',
-        surnames: 'Pompa Ciambrino',
-        age: 2,
-        activities: [
-            'Inglés',
-            'Estimulación sensorial',
-            'Estimulación psicomotriz',
-            'Estimulación cognitiva',
-            'Música y lectura',
-            'Actividades pedagógicas',
-        ],
-    },
-    {
+    const emma = {
         name: 'Emma',
-        surnames: 'Pompa Ciambrino',
-        age: 1,
-        activities: [
-            'Estimulación sensorial',
-            'Estimulación psicomotriz',
-            'Estimulación cognitiva',
-            'Actividades pedagógicas',
-        ],
-    },
-];
-const emma = {
-    name: 'Emma',
-    surnames: 'Ciambrino Baz',
-    age: 42,
-    email: 'emma.ciambrino@gmail.co',
-    profession: 'Analista de Mercados Internacionales',
-    children: children,
-};
-const daniel = {
-    name: 'Daniel',
-    surnames: 'Pompa Pareja',
-    age: 49,
-    email: 'daniel.pompa@gmail.com',
-    profession: 'Desarrollador MERN Stack',
-    children: children,
-    wife: emma,
-};
-emma.husband = daniel;
-daniel.wife = emma;
-const catInBoots = {
-    name: 'El Gato con Botas',
-    location: 'Madrid',
-    children: children,
-    getChildrenList: function () {
-        return this.children;
-    },
-};
-const printPersonInfo = (person) => {
-    const { name, surnames, age, email, profession, husband, wife } = person;
-    console.log(`Nombre: ${name} ${surnames}`);
-    console.log(`Edad: ${age}`);
-    console.log(`Correo electrónico: ${email}`);
-    console.log(`Profesión: ${profession}`);
-    if (person.husband) {
-        console.log(`Cónyuge: ${husband.name} ${husband.surnames}`);
+        surname: 'Ciambrino',
+        phone: '669 79 09 60',
+        email: 'emma.ciambrino@gmail.com',
+    };
+    const daniel = {
+        name: 'Daniel',
+        surname: 'Pompa',
+        phone: '648 20 36 85',
+        email: 'daniel.pompa@gmail.com',
+    };
+    const oscar = {
+        name: 'Óscar',
+        surname: 'Pompa',
+        phone: '656 14 56 34',
+        email: 'oscar.pompa@gmail.com',
+    };
+    const customers = [emma, daniel, oscar];
+    console.log('%cFor of Loop', 'color:#1e40af; text-transform:uppercase; font-weight: bold');
+    console.log(customers);
+    for (const customer of customers) {
+        console.log(`${customer.name} ${customer.surname}\nCorreo electrónico: ${customer.email}`);
     }
-    if (person.wife) {
-        console.log(`Cónyuge: ${wife.name} ${wife.surnames}`);
-    }
-};
-const printChildren = (children) => {
-    console.log('Hijos:');
-    children.forEach(child => {
-        console.log(`- ${child.name} ${child.surnames}, Edad: ${child.age} años`);
-    });
-};
-const printActivities = (child) => {
-    if (child.activities && child.activities.length > 0) {
-        console.log(`Actividades:`);
-        child.activities.forEach(activity => {
-            console.log(`- ${activity}`);
-        });
-    }
-    else {
-        console.log('Actividades: Ninguna');
-    }
-};
-console.log('%cUnion Types', 'color:#1e40af; text-transform:uppercase; font-weight: bold');
-console.log('%cInformación de Emma', 'color:#b91c1c; text-transform:uppercase; font-weight: bold');
-printPersonInfo(emma);
-printChildren(emma.children);
-console.log('%cInformación de Daniel', 'color:#b91c1c; text-transform:uppercase; font-weight: bold');
-printPersonInfo(daniel);
-printChildren(daniel.children);
-console.log('%cGuardería', 'color:#b91c1c; text-transform:uppercase; font-weight: bold');
-console.log(`Nombre de la Guardería: ${catInBoots.name}`);
-console.log(`Ubicación: Calle Falsa 47, ${catInBoots.location}`);
-console.log('%cActividades en la Guardería', 'color:#b91c1c; text-transform:uppercase; font-weight: bold');
-catInBoots.getChildrenList().forEach(child => {
-    console.log(`Nombre: ${child.name}, Edad: ${child.age} años`);
-    printActivities(child);
-});
+})();
 //# sourceMappingURL=main.js.map
