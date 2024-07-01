@@ -1,208 +1,135 @@
 "use strict";
-class Person {
-    constructor(firstName, lastName, age) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-    }
-}
-class Developer extends Person {
-    constructor(firstName, lastName, age) {
-        super(firstName, lastName, age);
-    }
-    technologies() {
-        return ['MongoDB', 'Express', 'React', 'Node.js'];
-    }
-    info() {
-        console.log(`Desarrollador: ${this.firstName} ${this.lastName}, ${this.age} años`);
-        console.log('Tecnologías:', this.technologies().join(' - '));
-    }
-}
-class Customer extends Person {
-    constructor(firstName, lastName, age) {
-        super(firstName, lastName, age);
-    }
-    contact() {
-        return 'emma.ciambrino@gmail.com';
-    }
-    info() {
-        console.log(`Cliente: ${this.firstName} ${this.lastName}, ${this.age} años`);
-        console.log('Contacto:', this.contact());
-    }
-}
-const printFullName = (person) => {
-    console.log(person.firstName, person.lastName);
-};
 (() => {
-    const developer = new Developer('Daniel', 'Pompa', 49);
-    const customer = new Customer('Emma', 'Ciambrino', 42);
-    console.log('%cClases Abstractas', 'color:#1e40af; text-transform: uppercase; font-weight: bold;');
-    developer.info();
-    customer.info();
-    printFullName(developer);
-    printFullName(customer);
-})();
-(() => {
-    class Person {
-        constructor(_firstName, _lastName, _age, _phone, _email) {
-            this._firstName = _firstName;
-            this._lastName = _lastName;
-            this._age = _age;
-            this._phone = _phone;
-            this._email = _email;
-            if (this._age <= 0 || this._age >= 110) {
-                throw new Error('La edad no es válida');
-            }
-        }
-        get firstName() {
-            return this._firstName;
-        }
-        set firstName(firstName) {
-            this._firstName = firstName;
-        }
-        get lastName() {
-            return this._lastName;
-        }
-        set lastName(lastName) {
-            this._lastName = lastName;
-        }
-        get age() {
-            return this._age;
-        }
-        set age(age) {
-            if (age < 0 || age >= 110) {
-                throw new Error('La edad no es válida');
-            }
-            this._age = age;
-        }
-        get phone() {
-            var _a;
-            return (_a = this._phone) !== null && _a !== void 0 ? _a : 'No disponible';
-        }
-        set phone(phone) {
-            this._phone = phone;
-        }
-        get email() {
-            var _a;
-            return (_a = this._email) !== null && _a !== void 0 ? _a : 'No disponible';
-        }
-        set email(email) {
-            this._email = email;
-        }
+    const daniel = {
+        firstName: 'Daniel',
+        lastName: 'Pompa',
+        age: 49,
+        email: 'daniel.pompa@gmail.com',
+        getFirstName() {
+            return this.firstName;
+        },
+        getLastName() {
+            return this.lastName;
+        },
+        getAge() {
+            return this.age;
+        },
+        getEmail() {
+            return this.email;
+        },
+        setFirstName(firstName) {
+            this.firstName = firstName;
+        },
+        setLastName(lastName) {
+            this.lastName = lastName;
+        },
+        setAge(age) {
+            this.age = age;
+        },
+        setEmail(email) {
+            this.email = email;
+        },
         info() {
-            return `Nombre: ${this._firstName}\nApellido: ${this._lastName}\nEdad: ${this._age} años\nTeléfono: ${this.phone}\nCorreo electrónico: ${this.email}`;
-        }
-    }
-    const person = new Person('Daniel', 'Pompa', 49, '648 15 35 96', 'daniel.pompa@gmail.com');
-    const gael = new Person('Gael', 'Pompa', 2);
-    console.log('%cClases básicas', 'color:#1e40af; text-transform: uppercase; font-weight: bold;');
-    console.log(person.info());
-    console.log(gael.info());
-})();
-(() => {
-    class Person {
-        constructor(_firstName, _lastName, _age, _phone, _email) {
-            this._firstName = _firstName;
-            this._lastName = _lastName;
-            this._age = _age;
-            this._phone = _phone;
-            this._email = _email;
-            this.validateAge(_age);
-        }
-        get firstName() {
-            return this._firstName;
-        }
-        set firstName(firstName) {
-            this._firstName = firstName;
-        }
-        get lastName() {
-            return this._lastName;
-        }
-        set lastName(lastName) {
-            this._lastName = lastName;
-        }
-        get age() {
-            return this._age;
-        }
-        set age(age) {
-            this.validateAge(age);
-            this._age = age;
-        }
-        get phone() {
-            var _a;
-            return (_a = this._phone) !== null && _a !== void 0 ? _a : 'No disponible';
-        }
-        set phone(phone) {
-            this._phone = phone;
-        }
-        get email() {
-            var _a;
-            return (_a = this._email) !== null && _a !== void 0 ? _a : 'No disponible';
-        }
-        set email(email) {
-            this._email = email;
-        }
-        info() {
-            return `Nombre: ${this._firstName}\nApellido: ${this._lastName}\nEdad: ${this._age}\nTeléfono: ${this.phone}\nCorreo electrónico: ${this.email}`;
-        }
-        get fullName() {
-            return `${this._firstName} ${this._lastName}`;
-        }
-        validateAge(age) {
-            if (age < 0 || age >= 110) {
-                throw new Error('La edad no es válida');
-            }
-        }
-    }
-    class Developer extends Person {
-        constructor(firstName, lastName, age, phone, email, _technologies) {
-            super(firstName, lastName, age, phone, email);
-            this._technologies = _technologies;
-        }
-        get technologies() {
-            return this._technologies;
-        }
-        set technologies(technologies) {
-            this._technologies = technologies;
-        }
-        get fullNameFromPerson() {
-            return super.fullName;
-        }
-        info() {
-            return `${super.info()}\nTecnologías: ${this._technologies.join(' - ')}`;
-        }
-    }
-    const gael = new Person('Gael', 'Pompa', 2);
-    const daniel = new Developer('Daniel', 'Pompa', 49, '648 16 78 93', 'daniel.pompa@gmail.com', ['TypeScript', 'MongoDB', 'Express.js', 'React', 'Node.js']);
-    console.log('%cHerencia', 'color:#1e40af; text-transform: uppercase; font-weight: bold;');
-    console.log(gael.info());
+            return `Nombre: ${this.firstName} \nApellido: ${this.lastName} \nCorreo electrónico: ${this.email} \nEdad: ${this.age} años`;
+        },
+    };
     console.log(daniel.info());
-    console.log('daniel.fullNameFromPerson:', daniel.fullNameFromPerson);
 })();
 (() => {
     class Person {
-        constructor(firstName, lastName) {
+        constructor(id, firstName, lastName, age) {
+            this.id = id;
             this.firstName = firstName;
             this.lastName = lastName;
+            this.age = age;
         }
-        static getInstance() {
-            if (!Person.instance) {
-                Person.instance = new Person('Daniel', 'Pompa Pareja');
-            }
-            return Person.instance;
+        getFullName(id) {
+            return id === this.id
+                ? `Nombre y apellido: ${this.firstName} ${this.lastName}`
+                : `No existe persona con id ${id}`;
         }
-        changeName(newFirstName, newLastName) {
-            this.firstName = newFirstName;
-            this.lastName = newLastName;
+        info() {
+            return `Nombre: ${this.firstName} \nApellido: ${this.lastName} \nEdad: ${this.age} años`;
         }
     }
-    const person1 = Person.getInstance();
-    const person2 = Person.getInstance();
-    const person3 = Person.getInstance();
-    person1.changeName('Gael', 'Pompa');
-    console.log('%cPatrón Singleton', 'color:#1e40af; text-transform: uppercase; font-weight: bold;');
-    console.log(person1);
-    console.log(person2);
-    console.log(person3);
+    const person = new Person('dbdb8401-8bbb-4ce3-8eba-f8943e5e756d', 'Gael', 'Pompa', 2);
+    console.log(person.info());
+    console.log(person.getFullName('dbdb8401-8bbb-4ce3-8eba-f8943e5e756d'));
+})();
+(() => {
+    const customer = {
+        uuid: '9db13c9f-b27b-4018-8025-64d8f46dfe8t',
+        firstName: 'Emma',
+        lastName: 'Ciambrino',
+        age: 42,
+        phone: '669 85 34 67',
+        email: 'emma.ciambrino@gmail.com',
+        address: {
+            id: '8eb13c9f-b27b-4018-8025-64d8f46dfeff',
+            street: 'Calle falsa 30',
+            postcode: '28001',
+            city: 'Madrid',
+        },
+    };
+    const getCustomer = (uuid) => {
+        const { street, postcode, city } = customer.address;
+        if (uuid !== customer.uuid) {
+            throw new Error(`No existe cliente con uuid ${uuid}`);
+        }
+        return `Nombre: ${customer.firstName}\nApellido: ${customer.lastName}\nEdad: ${customer.age}\nCorreo electrónico: ${customer.email}\nTeléfono: ${customer.phone}\nDirección: ${street}, ${postcode}, ${city}`;
+    };
+    const getFullAddress = (id) => {
+        if (id !== customer.address.id) {
+            throw new Error(`No existe dirección con id ${id}`);
+        }
+        return `${customer.address.street}, ${customer.address.postcode}, ${customer.address.city}`;
+    };
+    console.log(getCustomer('9db13c9f-b27b-4018-8025-64d8f46dfe8t'));
+    console.log(getFullAddress('8eb13c9f-b27b-4018-8025-64d8f46dfeff'));
+})();
+(() => {
+    let addNumbers;
+    let subtractNumbers;
+    let multiplyNumbers;
+    let divideNumbers;
+    addNumbers = (a, b) => {
+        return a + b;
+    };
+    subtractNumbers = (a, b) => {
+        return a - b;
+    };
+    multiplyNumbers = (a, b) => {
+        return a * b;
+    };
+    divideNumbers = (a, b) => {
+        if (b === 0) {
+            throw new Error('División por cero no está permitida.');
+        }
+        return parseFloat((a / b).toFixed(2));
+    };
+    console.log(`addNumbers(49, 42) =`, addNumbers(49, 42));
+    console.log(`subtractNumbers(49, 42) =`, subtractNumbers(49, 42));
+    console.log(`multiplyNumbers(49, 42) =`, multiplyNumbers(49, 42));
+    console.log(`divideNumbers(49, 42) =`, divideNumbers(49, 42));
+})();
+(() => {
+    const getRandomNumber = (min, max) => {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+    const generateLotteryCombination = () => {
+        const combination = new Set();
+        while (combination.size < 6) {
+            combination.add(getRandomNumber(1, 49));
+        }
+        const complementaryNumber = getRandomNumber(0, 9);
+        return {
+            combination,
+            complementaryNumber,
+        };
+    };
+    const lotteryCombination = generateLotteryCombination();
+    const combinationArray = Array.from(lotteryCombination.combination);
+    console.log('Combinación:', combinationArray);
+    console.log('Número complementario:', lotteryCombination.complementaryNumber);
 })();
 //# sourceMappingURL=main.js.map
